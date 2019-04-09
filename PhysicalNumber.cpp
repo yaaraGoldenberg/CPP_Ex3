@@ -10,19 +10,19 @@ PhysicalNumber::PhysicalNumber(double num1, int U1){
 }
 
 const PhysicalNumber PhysicalNumber::operator+() const{
-	return PhysicalNumber(0,0);
+	return PhysicalNumber(0,Unit::KM);
 }
 
 const PhysicalNumber PhysicalNumber::operator-() const{
-	return PhysicalNumber(0,0);
+	return PhysicalNumber(0,Unit::KM);
 }
 
 const PhysicalNumber& PhysicalNumber::operator+(const PhysicalNumber& n) const{
-	return n;	
+	return PhysicalNumber(0,Unit::KM);	
 }
 
 const PhysicalNumber& PhysicalNumber::operator-(const PhysicalNumber& n) const{
-	return n;
+	return PhysicalNumber(0,Unit::KM);
 }
 
 PhysicalNumber& PhysicalNumber::operator++() {
@@ -34,11 +34,11 @@ PhysicalNumber& PhysicalNumber::operator--() {
 }
 
 const PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& n){
-	return n;
+	return *this;
 }
 
 const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& n){
-	return n;
+	return *this;
 }
 
 ostream& ariel::operator<<(ostream& out, const PhysicalNumber& n){

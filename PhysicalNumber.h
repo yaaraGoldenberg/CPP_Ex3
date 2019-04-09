@@ -5,10 +5,10 @@ namespace ariel{
 	class PhysicalNumber{
 	private:
 	double num;
-	int U;
+	Unit U;
 	public:
 	//constructor
-	PhysicalNumber(double num, int U);
+	PhysicalNumber(double num, Unit U);
 	//onary
 	const PhysicalNumber operator+() const; 
 	const PhysicalNumber operator-() const; 
