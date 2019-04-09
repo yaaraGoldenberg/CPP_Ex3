@@ -13,8 +13,8 @@ namespace ariel{
 	const PhysicalNumber operator+() const; 
 	const PhysicalNumber operator-() const; 
 	//Addition and subtraction
-	const PhysicalNumber& operator+(const PhysicalNumber& n) const; 
-	const PhysicalNumber& operator-(const PhysicalNumber& n) const; 
+	const PhysicalNumber operator+(const PhysicalNumber& n) const; 
+	const PhysicalNumber operator-(const PhysicalNumber& n) const; 
 	//Addition and subtraction one
 	PhysicalNumber& operator++();
 	PhysicalNumber& operator--();
@@ -26,11 +26,11 @@ namespace ariel{
 	friend istream& operator>>(istream& in, PhysicalNumber& n);
 
 	//logical operator
-	friend bool operator>(const PhysicalNumber& n, const PhysicalNumber& n1);
-	friend bool operator<(const PhysicalNumber& n, const PhysicalNumber& n1);
-	friend bool operator<=(const PhysicalNumber& n, const PhysicalNumber& n1);
-	friend bool operator>=(const PhysicalNumber& n, const PhysicalNumber& n1);
-	friend bool operator==(const PhysicalNumber& n, const PhysicalNumber& n1);
-	friend bool operator!=(const PhysicalNumber& n, const PhysicalNumber& n1);
+	 const bool operator>(const PhysicalNumber& n);
+	 const bool operator<(const PhysicalNumber& n);
+	 const bool operator<=(const PhysicalNumber& n);
+	 const bool operator>=(const PhysicalNumber& n);
+	 const bool operator==(const PhysicalNumber& n);
+	 const bool operator!=(const PhysicalNumber& n);
 	};
 }
