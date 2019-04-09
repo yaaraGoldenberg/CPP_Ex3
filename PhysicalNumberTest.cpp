@@ -24,6 +24,18 @@ int main() {
     PhysicalNumber c(2, Unit::HOUR);
     PhysicalNumber d(30, Unit::MIN);
 
+	PhysicalNumber km(5, Unit::KM);
+	PhysicalNumber m(600, Unit::M);
+	PhysicalNumber cm(10, Unit::CM);
+		
+	PhysicalNumber hour(4, Unit::HOUR);
+	PhysicalNumber min(60, Unit::MIN);
+	PhysicalNumber sec(120, Unit::SEC);
+
+	PhysicalNumber g(6, Unit::G);
+	PhysicalNumber kg(3, Unit::KG);
+	PhysicalNumber ton(7, Unit::TON);
+
     testcase
     .setname("Basic output")
     .CHECK_OUTPUT(a, "2[km]")
@@ -49,9 +61,38 @@ int main() {
     .CHECK_OK(istringstream("700[kg]") >> a)
     .CHECK_OUTPUT((a += PhysicalNumber(1, Unit::TON)), "1700[kg]")
 
-    // YOUR TESTS - INSERT AS MANY AS YOU WANT
+	.setname("My Basic output")
+	.CHECK_OUTPUT(km, "5[km]")
+	.CHECK_OUTPUT(g, "6[g]")
+	.CHECK_OUTPUT(ton, "3[ton]")
+	.CHECK_OUTPUT(min, "60[min]")
 
-      .setname("...")
+	.setname("My Compatible dimensions")
+	.CHECK_OUTPUT(km + m, "5.6[km]")
+	.CHECK_OUTPUT(cm + km, "500010[cm]")
+	.CHECK_OUTPUT(m + cm, "606[m]")
+	.CHECK_OUTPUT(hour + min, "5[hour]")
+	.CHECK_OUTPUT(min + sec, "62[min]")
+	.CHECK_OUTPUT(sec + hour, "18120[sec]")
+	
+	.setname("My Incompatible dimensions")
+	.CHECK_THROWS(m + min)
+	.CHECK_THROWS(cm + g)
+	.CHECK_THROWS(hour + ton)
+	.CHECK_THROWS(sec + kg)
+	.CHECK_THROWS(km + min)
+
+	.setname("My boolean test")
+	.CHECK_EQUAL((kg == kg), true)
+	.CHECK_EQUAL((hour >= PhysicalNumber(7, Unit::HOUR)), false)
+	.CHECK_EQUAL((kg <= PhysicalNumber(3, Unit::KG)), true)
+	.CHECK_EQUAL((cm > PhysicalNumber(3, Unit::CM)), true)
+	.CHECK_EQUAL((ton < PhysicalNumber(12, Unit::TON)), false)
+	.CHECK_EQUAL((g == PhysicalNumber(3, Unit::G)), false)
+
+	.setname("My Basic input")
+	.CHECK_OK(istringstream("70[kg]") >> km)
+	.CHECK_OUTPUT((hour -= PhysicalNumber(2, Unit::HOUR)), "2[hour]")
 
       .print(cout, /*show_grade=*/false);
       grade = testcase.grade();

@@ -2,16 +2,16 @@
 #include "iostream"
 using namespace std;
 namespace ariel{
-	enum Unit { 
+	enum class Unit { 
 		KM,
 		M,
 		CM,
-		SEC,
 		HOUR,
+		MIN,
+		SEC,
 		G,
 		KG,
-		TON,
-		MIN
+		TON
 	};
 
 }
