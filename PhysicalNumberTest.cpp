@@ -4,7 +4,7 @@
  * @author Erel Segal-Halevi
  * @since 2019-02
  */
-
+#include <string>
 #include <iostream>
 #include <sstream>
 using std::cout, std::endl, std::istringstream;
@@ -64,16 +64,16 @@ int main() {
 	.setname("My Basic output")
 	.CHECK_OUTPUT(km, "5[km]")
 	.CHECK_OUTPUT(g, "6[g]")
-	.CHECK_OUTPUT(ton, "3[ton]")
+	.CHECK_OUTPUT(ton, "7[ton]")
 	.CHECK_OUTPUT(min, "60[min]")
 
 	.setname("My Compatible dimensions")
 	.CHECK_OUTPUT(km + m, "5.6[km]")
 	.CHECK_OUTPUT(cm + km, "500010[cm]")
-	.CHECK_OUTPUT(m + cm, "606[m]")
+	.CHECK_OUTPUT(m + cm, "600.1[m]")
 	.CHECK_OUTPUT(hour + min, "5[hour]")
 	.CHECK_OUTPUT(min + sec, "62[min]")
-	.CHECK_OUTPUT(sec + hour, "18120[sec]")
+	.CHECK_OUTPUT(sec + hour, "14520[sec]")
 	
 	.setname("My Incompatible dimensions")
 	.CHECK_THROWS(m + min)
@@ -87,7 +87,7 @@ int main() {
 	.CHECK_EQUAL((hour >= PhysicalNumber(7, Unit::HOUR)), false)
 	.CHECK_EQUAL((kg <= PhysicalNumber(3, Unit::KG)), true)
 	.CHECK_EQUAL((cm > PhysicalNumber(3, Unit::CM)), true)
-	.CHECK_EQUAL((ton < PhysicalNumber(12, Unit::TON)), false)
+	.CHECK_EQUAL((ton < PhysicalNumber(4, Unit::TON)), false)
 	.CHECK_EQUAL((g == PhysicalNumber(3, Unit::G)), false)
 
 	.setname("My Basic input")
