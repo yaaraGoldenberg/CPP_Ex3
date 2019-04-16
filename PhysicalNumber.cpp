@@ -67,6 +67,18 @@ PhysicalNumber& PhysicalNumber::operator--() {
 	return *this;
 }
 
+PhysicalNumber PhysicalNumber::operator++(int) {
+	PhysicalNumber ans(this->num, this->U);
+	this->num++;
+	return ans;
+}
+
+PhysicalNumber PhysicalNumber::operator--(int) {
+	PhysicalNumber ans(this->num, this->U);
+	this->num--;
+	return ans;
+}
+
 const PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& n){
 	if (equalDimension(n, *this) == false) {
 		throw std::invalid_argument("The dimensions are not the same\n");

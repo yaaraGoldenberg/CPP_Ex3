@@ -27,6 +27,8 @@ namespace ariel{
 	//Addition and subtraction one
 	PhysicalNumber& operator++();
 	PhysicalNumber& operator--();
+	PhysicalNumber operator++(int);
+	PhysicalNumber operator--(int);
 
 	const PhysicalNumber& operator+=(const PhysicalNumber& n); 
 	const PhysicalNumber& operator-=(const PhysicalNumber& n);
