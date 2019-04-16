@@ -88,7 +88,7 @@ int main() {
 	.CHECK_EQUAL((kg <= PhysicalNumber(3, Unit::KG)), true)
 	.CHECK_EQUAL((cm > PhysicalNumber(3, Unit::CM)), true)
 	.CHECK_EQUAL((ton < PhysicalNumber(4, Unit::TON)), false)
-	.CHECK_EQUAL((g == PhysicalNumber(3, Unit::G)), false)
+	.CHECK_EQUAL((g == PhysicalNumber(3, Unit::G)), true)
 
 	.setname("My Basic input")
 	.CHECK_OK(istringstream("70[kg]") >> km)

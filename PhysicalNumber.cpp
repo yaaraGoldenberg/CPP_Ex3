@@ -24,7 +24,12 @@ bool PhysicalNumber::equalDimension(const PhysicalNumber& pn, const PhysicalNumb
 
 //onary
 const PhysicalNumber PhysicalNumber::operator+(){
-	return PhysicalNumber(num,U);
+	if (this->num < 0) {
+		return PhysicalNumber(-num, U);
+	}
+	else {
+		return PhysicalNumber(num, U);
+	}
 }
 const PhysicalNumber PhysicalNumber::operator-(){
 	return PhysicalNumber(-num,U);
@@ -86,7 +91,42 @@ ostream& ariel::operator<<(ostream& os, const PhysicalNumber& n){
 	return (os << n.num << "[" << type[(int)n.U] << "]");
 }
 
-istream& ariel::operator>>(istream& is, PhysicalNumber& n){
+istream& ariel::operator>>(istream& is, PhysicalNumber& n) {
+
+	string str, number, t;
+	is >> str;
+
+	number = str.substr(0, str.find("["));
+	t = str.substr(str.find("[") + 1, str.length() - str.find("[") - 2);
+	bool flagT = false, flagN = false;
+	int index;
+	for (int i = 0; i < 9; i++) {
+		if (t == type[i]) {
+			index = i;
+			flagT = true;
+		}
+	}
+	for (int i = 0; i < number.length(); i++) {
+		if (isdigit(number.at(i))|| number.at(i) == '.') {
+			flagN = true;
+		}
+	}
+	if (str.find("[") == string::npos || str.find("]") == string::npos||flagT == false || flagN == false) {
+
+		return is;
+	}
+	
+	n.num=stod(number);
+	n.U = (Unit)index;
+	
+
+
+
+
+
+
+
+
         return is;
 }
 
