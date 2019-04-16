@@ -35,7 +35,7 @@ const PhysicalNumber PhysicalNumber::operator-(){
 	return PhysicalNumber(-num,U);
 }
 //Addition and subtraction
-const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& n){
+ PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& n){
 	double ans = 0;
 	if (equalDimension(n, *this) == false) {
 		throw std::invalid_argument("The dimensions are not the same\n");
@@ -46,7 +46,7 @@ const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& n){
 	return PhysicalNumber(ans, this->U);
 }
 
-const PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& n){
+ PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& n){
 	double ans = 0;
 	if (equalDimension(n, *this) == false) {
 		throw std::invalid_argument("The dimensions are not the same\n");
@@ -179,7 +179,7 @@ const bool PhysicalNumber::operator==(const PhysicalNumber& n){
 	else {
 		ans = (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
-	return this->num=ans;
+	return this->num==ans;
 }
 const bool PhysicalNumber::operator!=(const PhysicalNumber& n){
 	double ans = 0;
