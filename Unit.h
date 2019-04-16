@@ -3,15 +3,7 @@
 using namespace std;
 namespace ariel{
 	enum class Unit { 
-		KM,
-		M,
-		CM,
-		HOUR,
-		MIN,
-		SEC,
-		G,
-		KG,
-		TON
+		CM, M, KM, SEC, MIN, HOUR, G, KG, TON
 	};
 	
 }

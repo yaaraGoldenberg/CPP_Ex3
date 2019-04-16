@@ -6,8 +6,8 @@
 using namespace std;
 using namespace ariel;
 
-const string type[9] = {"km","m","cm","hour","min","sec","g","kg","ton"};
-const long value[9] = {1,1000,100000,1,60,3600,1,1000,100000};
+const string type[9] = { "cm", "m", "km", "sec", "min", "hour", "g", "kg", "ton" };
+const double value[9] = { 1, 100, 100000, 1, 60, 3600, 1, 1000, 1000000 };
 
 PhysicalNumber::PhysicalNumber(double num1, Unit U1){
 	num = num1;
@@ -41,7 +41,7 @@ const PhysicalNumber PhysicalNumber::operator+(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = this->num + ((n.num*value[(int)this->U]) / value[(int)n.U]);
+		ans = this->num + (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return PhysicalNumber(ans, this->U);
 }
@@ -52,7 +52,7 @@ const PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = this->num - ((n.num*value[(int)this->U]) / value[(int)n.U]);
+		ans = this->num - (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return PhysicalNumber(ans, this->U);
 }
@@ -72,7 +72,7 @@ const PhysicalNumber& PhysicalNumber::operator+=(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		this->num = this->num + ((n.num*value[(int)this->U]) / value[(int)n.U]);
+		this->num = this->num + (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return *this;
 }
@@ -82,7 +82,7 @@ const PhysicalNumber& PhysicalNumber::operator-=(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		this->num = this->num - ((n.num*value[(int)this->U]) / value[(int)n.U]);
+		this->num = this->num - (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return *this;
 }
@@ -92,7 +92,6 @@ ostream& ariel::operator<<(ostream& os, const PhysicalNumber& n){
 }
 
 istream& ariel::operator>>(istream& is, PhysicalNumber& n) {
-
 	string str, number, t;
 	is >> str;
 
@@ -111,23 +110,13 @@ istream& ariel::operator>>(istream& is, PhysicalNumber& n) {
 			flagN = true;
 		}
 	}
-	if (str.find("[") == string::npos || str.find("]") == string::npos||flagT == false || flagN == false) {
+	if (str.find("[") == string::npos || str.find("]") == string::npos || flagT == false || flagN == false) {
 
 		return is;
 	}
-	
 	n.num=stod(number);
 	n.U = (Unit)index;
-	
-
-
-
-
-
-
-
-
-        return is;
+	return is;
 }
 
 const bool PhysicalNumber::operator>(const PhysicalNumber& n){
@@ -136,7 +125,7 @@ const bool PhysicalNumber::operator>(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = (n.num*value[(int)this->U]) / value[(int)n.U];;
+		ans = (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return this->num>ans;
 }
@@ -146,7 +135,7 @@ const bool PhysicalNumber::operator<(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = (n.num*value[(int)this->U]) / value[(int)n.U];;
+		ans = (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return this->num<ans;
 }
@@ -156,7 +145,7 @@ const bool PhysicalNumber::operator<=(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = (n.num*value[(int)this->U]) / value[(int)n.U];
+		ans = (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return this->num<=ans;
 }
@@ -166,7 +155,7 @@ const bool PhysicalNumber::operator>=(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = (n.num*value[(int)this->U]) / value[(int)n.U];
+		ans = (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return this->num>=ans;
 }
@@ -176,7 +165,7 @@ const bool PhysicalNumber::operator==(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = (n.num*value[(int)this->U]) / value[(int)n.U];
+		ans = (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return this->num=ans;
 }
@@ -186,7 +175,7 @@ const bool PhysicalNumber::operator!=(const PhysicalNumber& n){
 		throw std::invalid_argument("The dimensions are not the same\n");
 	}
 	else {
-		ans = (n.num*value[(int)this->U]) / value[(int)n.U];
+		ans = (n.num * (double(value[(int)n.U]) / value[(int)this->U]));
 	}
 	return this->num!=ans;
 }
